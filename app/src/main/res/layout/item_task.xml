@@ -20,15 +20,15 @@
         tools:text="TextView" />
     <TextView
         android:layout_width="0dp"
-        android:layout_weight="0.5"
+        android:layout_weight="0.6"
         android:layout_height="wrap_content"
         android:textSize="12sp"
-        android:text="Límite" />
+        android:text="@string/deadline" />
 
     <TextView
         android:id="@+id/deadlineTextView"
         android:layout_width="0dp"
-        android:layout_weight="0.79"
+        android:layout_weight="1"
         android:layout_height="wrap_content"
         android:textSize="15sp"
         android:textStyle="italic"

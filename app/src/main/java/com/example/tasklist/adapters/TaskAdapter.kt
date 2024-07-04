@@ -1,11 +1,16 @@
 package com.example.tasklist.adapters
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.tasklist.data.Task
 import com.example.tasklist.databinding.ItemTaskBinding
 import java.text.SimpleDateFormat
+import java.time.Instant
+import java.time.LocalDate
 import java.util.Calendar
 import java.util.Locale
 
@@ -55,8 +60,19 @@ class TaskAdapter (
 
             // Crear un formato de fecha
             val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+
+            //esto ya viene en long
+            var currentDay = Instant.now().toEpochMilli()
+
+
+
             // Formatear la fecha y establecerla en el TextView
             binding.deadlineTextView.text = dateFormat.format(calendar.time)
+            if (task.deadline <= currentDay && !task.done) {
+                //binding.deadlineTextView.setTextSize(120,1f)
+                Toast.makeText(binding.root.context,"${task.name} hoy sin falta", Toast.LENGTH_LONG).show()
+            }
+
         }
     }
 }

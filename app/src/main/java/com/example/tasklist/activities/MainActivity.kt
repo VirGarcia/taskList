@@ -71,6 +71,7 @@ class MainActivity : AppCompatActivity() {
         binding.recyclerView.adapter = adapter
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
 
+
         binding.addTaskButton.setOnClickListener {
             val intent = Intent(this, TaskActivity::class.java)
             startActivity(intent)
@@ -79,13 +80,11 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-
         loadData()
     }
 
     private fun loadData() {
         taskList = taskDAO.findAll()
-
         adapter.updateData(taskList)
     }
 }

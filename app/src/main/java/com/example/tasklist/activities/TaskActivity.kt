@@ -2,11 +2,12 @@ package com.example.tasklist.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
-import com.example.tasklist.R
 import com.example.tasklist.data.Task
 import com.example.tasklist.data.TaskDAO
 import com.example.tasklist.databinding.ActivityTaskBinding
+import java.util.Calendar
 
 class TaskActivity : AppCompatActivity() {
     private lateinit var binding: ActivityTaskBinding
@@ -22,7 +23,16 @@ class TaskActivity : AppCompatActivity() {
 
         binding.saveButton.setOnClickListener {
             val taskName = binding.nameEditText.text.toString()
-            val task = Task(-1, taskName)
+
+            val calendar = Calendar.getInstance()
+            calendar.set(
+                binding.deadlineDatePicker.year,
+                binding.deadlineDatePicker.month,
+                binding.deadlineDatePicker.dayOfMonth)
+
+            val deadline = calendar.timeInMillis.toLong()
+            val task = Task(-1, taskName, false, deadline)
+
             taskDAO.insert(task)
             Toast.makeText(this, "Tarea guardada correctamente", Toast.LENGTH_SHORT).show()
             finish()

@@ -13,6 +13,8 @@ class TaskDAO(context: Context) {
         val values = ContentValues()
         values.put(Task.COLUMN_NAME_TITLE, task.name)
         values.put(Task.COLUMN_NAME_DONE, task.done)
+        values.put(Task.COLUMN_NAME_DEADLINE, task.deadline)
+
 
         //lo de null hay que ponerlo por la documentación, es así.
         val newRowId = db.insert(Task.TABLE_NAME, null, values)
@@ -25,6 +27,7 @@ class TaskDAO(context: Context) {
         val values = ContentValues()
         values.put(Task.COLUMN_NAME_TITLE, task.name)
         values.put(Task.COLUMN_NAME_DONE, task.done)
+        values.put(Task.COLUMN_NAME_DEADLINE, task.deadline)
 
         val updatedRows = db.update(
             Task.TABLE_NAME,
@@ -43,7 +46,7 @@ class TaskDAO(context: Context) {
     fun find(id: Int) : Task? {
         val db = databaseManager.readableDatabase
 
-        val projection = arrayOf(Task.COLUMN_NAME_ID, Task.COLUMN_NAME_TITLE, Task.COLUMN_NAME_DONE)
+        val projection = arrayOf(Task.COLUMN_NAME_ID, Task.COLUMN_NAME_TITLE, Task.COLUMN_NAME_DONE, Task.COLUMN_NAME_DEADLINE)
 
         val cursor = db.query(
             Task.TABLE_NAME,                              // The table to query
@@ -60,7 +63,8 @@ class TaskDAO(context: Context) {
             val id = cursor.getInt(cursor.getColumnIndexOrThrow(Task.COLUMN_NAME_ID))
             val name = cursor.getString(cursor.getColumnIndexOrThrow(Task.COLUMN_NAME_TITLE))
             val done = cursor.getInt(cursor.getColumnIndexOrThrow(Task.COLUMN_NAME_DONE)) == 1
-            task = Task(id, name, done)
+            val deadline = cursor.getLong(cursor.getColumnIndexOrThrow(Task.COLUMN_NAME_DEADLINE))
+            task = Task(id, name, done, deadline)
         }
         cursor.close()
         db.close()
@@ -70,7 +74,7 @@ class TaskDAO(context: Context) {
     fun findAll() : List<Task> {
         val db = databaseManager.readableDatabase
 
-        val projection = arrayOf(Task.COLUMN_NAME_ID, Task.COLUMN_NAME_TITLE, Task.COLUMN_NAME_DONE)
+        val projection = arrayOf(Task.COLUMN_NAME_ID, Task.COLUMN_NAME_TITLE, Task.COLUMN_NAME_DONE, Task.COLUMN_NAME_DEADLINE)
 
         val cursor = db.query(
             Task.TABLE_NAME,                        // The table to query
@@ -87,7 +91,8 @@ class TaskDAO(context: Context) {
             val id = cursor.getInt(cursor.getColumnIndexOrThrow(Task.COLUMN_NAME_ID))
             val name = cursor.getString(cursor.getColumnIndexOrThrow(Task.COLUMN_NAME_TITLE))
             val done = cursor.getInt(cursor.getColumnIndexOrThrow(Task.COLUMN_NAME_DONE)) == 1
-            val task = Task(id, name, done)
+            val deadline = cursor.getLong(cursor.getColumnIndexOrThrow(Task.COLUMN_NAME_DEADLINE))
+            val task = Task(id, name, done, deadline)
             tasks.add(task)
         }
         cursor.close()

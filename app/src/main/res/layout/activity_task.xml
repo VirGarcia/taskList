@@ -15,6 +15,21 @@
         android:layout_height="wrap_content"
         android:hint="Que hay que hacer?"/>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:paddingTop="40dp"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:text="Selecciona fecha límite"/>
+
+    <DatePicker
+        android:id="@+id/deadlineDatePicker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"/>
+
     <Button
         android:id="@+id/saveButton"
         android:layout_width="wrap_content"

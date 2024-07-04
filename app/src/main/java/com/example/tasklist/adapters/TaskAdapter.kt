@@ -5,6 +5,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tasklist.data.Task
 import com.example.tasklist.databinding.ItemTaskBinding
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Locale
 
 class TaskAdapter (
     private var dataSet: List<Task> = emptyList(),
@@ -45,6 +48,15 @@ class TaskAdapter (
         fun render(task: Task) {
             binding.nameTextView.text = task.name
             binding.doneCheckBox.isChecked = task.done
+
+            // Crear una instancia de Calendar y establecer su tiempo en milisegundos
+            val calendar = Calendar.getInstance()
+            calendar.timeInMillis = task.deadline.toLong()
+
+            // Crear un formato de fecha
+            val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+            // Formatear la fecha y establecerla en el TextView
+            binding.deadlineTextView.text = dateFormat.format(calendar.time)
         }
     }
 }

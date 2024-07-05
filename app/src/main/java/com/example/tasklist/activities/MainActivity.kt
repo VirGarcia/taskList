@@ -5,12 +5,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.widget.Toast
-import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.tasklist.R
 import com.example.tasklist.adapters.TaskAdapter
-import com.example.tasklist.data.Task
-import com.example.tasklist.data.TaskDAO
+import com.example.tasklist.entities.Task
+import com.example.tasklist.daos.TaskDAO
 import com.example.tasklist.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {

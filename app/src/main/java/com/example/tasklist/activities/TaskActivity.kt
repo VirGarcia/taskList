@@ -2,10 +2,9 @@ package com.example.tasklist.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
-import com.example.tasklist.data.Task
-import com.example.tasklist.data.TaskDAO
+import com.example.tasklist.entities.Task
+import com.example.tasklist.daos.TaskDAO
 import com.example.tasklist.databinding.ActivityTaskBinding
 import java.util.Calendar
 
@@ -30,7 +29,7 @@ class TaskActivity : AppCompatActivity() {
                 binding.deadlineDatePicker.month,
                 binding.deadlineDatePicker.dayOfMonth)
 
-            val deadline = calendar.timeInMillis.toLong()
+            val deadline = calendar.timeInMillis
             val task = Task(-1, taskName, false, deadline)
 
             taskDAO.insert(task)

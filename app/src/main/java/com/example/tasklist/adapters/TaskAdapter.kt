@@ -1,16 +1,13 @@
 package com.example.tasklist.adapters
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.ViewHolder
-import com.example.tasklist.data.Task
+import com.example.tasklist.entities.Task
 import com.example.tasklist.databinding.ItemTaskBinding
 import java.text.SimpleDateFormat
 import java.time.Instant
-import java.time.LocalDate
 import java.util.Calendar
 import java.util.Locale
 

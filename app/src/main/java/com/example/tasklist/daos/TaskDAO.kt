@@ -1,7 +1,8 @@
-package com.example.tasklist.data
+package com.example.tasklist.daos
 
 import android.content.ContentValues
 import android.content.Context
+import com.example.tasklist.entities.Task
 import com.example.tasklist.utils.DatabaseManager
 
 class TaskDAO(context: Context) {
@@ -46,7 +47,12 @@ class TaskDAO(context: Context) {
     fun find(id: Int) : Task? {
         val db = databaseManager.readableDatabase
 
-        val projection = arrayOf(Task.COLUMN_NAME_ID, Task.COLUMN_NAME_TITLE, Task.COLUMN_NAME_DONE, Task.COLUMN_NAME_DEADLINE)
+        val projection = arrayOf(
+            Task.COLUMN_NAME_ID,
+            Task.COLUMN_NAME_TITLE,
+            Task.COLUMN_NAME_DONE,
+            Task.COLUMN_NAME_DEADLINE
+        )
 
         val cursor = db.query(
             Task.TABLE_NAME,                              // The table to query
@@ -74,7 +80,12 @@ class TaskDAO(context: Context) {
     fun findAll() : List<Task> {
         val db = databaseManager.readableDatabase
 
-        val projection = arrayOf(Task.COLUMN_NAME_ID, Task.COLUMN_NAME_TITLE, Task.COLUMN_NAME_DONE, Task.COLUMN_NAME_DEADLINE)
+        val projection = arrayOf(
+            Task.COLUMN_NAME_ID,
+            Task.COLUMN_NAME_TITLE,
+            Task.COLUMN_NAME_DONE,
+            Task.COLUMN_NAME_DEADLINE
+        )
 
         val cursor = db.query(
             Task.TABLE_NAME,                        // The table to query

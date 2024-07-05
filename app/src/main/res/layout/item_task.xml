@@ -23,7 +23,7 @@
         android:layout_weight="0.5"
         android:layout_height="wrap_content"
         android:textSize="12sp"
-        android:text="Límite" />
+        android:text="@string/deadline" />
 
     <TextView
         android:id="@+id/deadlineTextView"

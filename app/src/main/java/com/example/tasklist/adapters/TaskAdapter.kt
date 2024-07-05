@@ -64,13 +64,16 @@ class TaskAdapter (
             //esto ya viene en long
             var currentDay = Instant.now().toEpochMilli()
 
-
-
             // Formatear la fecha y establecerla en el TextView
             binding.deadlineTextView.text = dateFormat.format(calendar.time)
+            /*if (task.deadline < currentDay && !task.done) {
+                //binding.deadlineTextView.setTextSize(120,1f)
+                Toast.makeText(binding.root.context,"${task.name} ¡Fuera de fecha!", Toast.LENGTH_LONG).show()
+            }*/
+
             if (task.deadline <= currentDay && !task.done) {
                 //binding.deadlineTextView.setTextSize(120,1f)
-                Toast.makeText(binding.root.context,"${task.name} hoy sin falta", Toast.LENGTH_LONG).show()
+                Toast.makeText(binding.root.context,"${task.name} HOY sin falta", Toast.LENGTH_LONG).show()
             }
 
         }

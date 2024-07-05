@@ -3,7 +3,9 @@ package com.example.tasklist.activities
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
 import android.widget.Toast
+import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.tasklist.R
 import com.example.tasklist.adapters.TaskAdapter
@@ -76,6 +78,13 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, TaskActivity::class.java)
             startActivity(intent)
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.menu_activity_main, menu)
+        //val searchViewItem = menu.findItem(R.id.menu_search)
+        //val searchView = searchViewItem.actionView as SearchView
+        return true
     }
 
     override fun onResume() {

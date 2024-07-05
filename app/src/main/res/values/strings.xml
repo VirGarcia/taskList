@@ -1,5 +1,4 @@
 <resources>
     <string name="app_name">taskList</string>
     <string name="delete_task">deleteTask</string>
-    <string name="deadline">Deadline</string>
 </resources>
